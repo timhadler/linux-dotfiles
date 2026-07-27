@@ -1,0 +1,116 @@
+/* ~/.config/waybar/style.css
+   Nord palette, floating islands (each group is its own rounded pill
+   with a gap to the next — not one solid bar). */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+/* Each "island" — the groups defined in config.jsonc — gets its own
+   floating pill. The gap between islands comes from this margin. */
+.workspaces-group,
+.stats-group,
+#network,
+.tray-group,
+#clock {
+    background-color: rgba(46, 52, 64, 0.9); 
+    border: 1px solid #4c566a;         /* nord3 */
+    border-radius: 14px;
+    margin: 0 6px;
+    padding: 0 10px;
+}
+
+/* Give inner modules breathing room without needing individual backgrounds */
+#workspaces button,
+#cpu,
+#memory,
+#custom-gpu,
+#pulseaudio,
+#bluetooth,
+#tray,
+#custom-power {
+    padding: 0 8px;
+    color: #d8dee9;                    /* nord4 */
+}
+
+/* Workspaces */
+#workspaces button {
+    background: transparent;
+    border-radius: 10px;
+    color: #4c566a;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+#workspaces button.active {
+    color: #88c0d0;                    /* nord8 frost accent */
+    background-color: #3b4252;
+}
+#workspaces button:hover {
+    color: #81a1c1;                    /* nord9 */
+    background-color: #3b4252;
+}
+
+/* Clock */
+#clock {
+    color: #eceff4;
+    font-weight: 600;
+}
+
+/* CPU / RAM / GPU */
+#cpu, #memory, #custom-gpu {
+    color: #a3be8c;                    /* nord14 green, calm "system ok" tone */
+}
+
+/* Network */
+#network {
+    color: #81a1c1;
+}
+#network.disconnected {
+    color: #bf616a;                    /* nord11 red */
+}
+
+/* Volume — interactive, hover feedback */
+#pulseaudio {
+    color: #ebcb8b;                    /* nord13 amber */
+    transition: background-color 0.2s ease;
+}
+#pulseaudio:hover {
+    background-color: #3b4252;
+    border-radius: 10px;
+}
+#pulseaudio.muted {
+    color: #4c566a;
+}
+
+/* Bluetooth — interactive, opens Overskride */
+#bluetooth {
+    color: #88c0d0;
+    transition: background-color 0.2s ease;
+}
+#bluetooth:hover {
+    background-color: #3b4252;
+    border-radius: 10px;
+}
+
+/* System tray */
+#tray {
+    padding: 0 6px;
+}
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+/* Power button — sits at the end of the tray island, small accent on hover */
+#custom-power {
+    color: #bf616a;
+    font-size: 15px;
+    transition: color 0.2s ease;
+}
+#custom-power:hover {
+    color: #ebcb8b;
+}
