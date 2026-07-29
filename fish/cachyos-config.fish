@@ -74,6 +74,15 @@ function copy
     end
 end
 
+# Prepedn sudo
+set -g fish_escape_delay_ms 50
+
+function prepend_sudo
+    commandline -r "sudo "(commandline)
+end
+
+bind ctrl-s prepend_sudo
+
 ## Useful aliases
 # Chrome
 alias chrome='google-chrome-stable'
