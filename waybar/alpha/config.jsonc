@@ -90,7 +90,7 @@
         "format-connected": " {device_alias}",
         "format-connected-battery": " {device_alias} {device_battery_percentage}%",
         "tooltip-format": "Click to open Overskride",
-        "on-click": "overskride"
+        "on-click": "blueman-manager"
     },
     "tray": {
         "icon-size": 16,
