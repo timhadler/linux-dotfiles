@@ -3,11 +3,15 @@
 {
     "layer": "top",
     "position": "top",
+    "ipc": true,
     "height": 34,
     "margin-top": 8,
     "margin-left": 12,
     "margin-right": 12,
     "spacing": 0,
+    "exclusive": true,
+    "on-sigusr1": "show",
+    "on-sigusr2": "hide",
 
     "modules-left": ["group/workspaces-group"],
     "modules-center": ["clock"],
