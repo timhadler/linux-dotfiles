@@ -44,6 +44,7 @@ local programs = {
 ---------------------
 
 local bindings = require("~/.dotfiles/seeker/hypr/keybindings")
+local colors = require("~/.config/hypr/colors")
 
 bindings.setup(programs)
 
@@ -62,6 +63,7 @@ hl.on("hyprland.start", function ()
   --hl.exec_cmd("waybar & hyprpaper & firefox")
   hl.exec_cmd("waybar")
   hl.exec_cmd("python3 ~/.config/hypr/scripts/waybar-hotspot.py")
+  hl.exec_cmd("awww-daemon")
 end)
 
 
@@ -107,8 +109,9 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+            -- active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 }, (gradient example)
+            active_border = colors.primary,
+            inactive_border = colors.background
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
