@@ -77,6 +77,17 @@ window#waybar {
     color: #bf616a;                    /* nord11 red */
 }
 
+/* Notification */
+#custom-notification {
+	font-size: 16px;
+	color: @secondary;
+	padding: 4 10px;
+}
+
+#custom-notification.notification {
+	color: @primary;
+}
+
 /* Volume — interactive, hover feedback */
 #pulseaudio {
     color: #ebcb8b;                    /* nord13 amber */

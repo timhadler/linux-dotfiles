@@ -34,3 +34,8 @@ post_hook = "hyprctl reload"
 # input_path = "~/.config/matugen/templates/gtk-colors.css"
 # output_path = "~/.config/gtk-4.0/colors.css"
 # post_hook = '~/.config/matugen/post-hook-scripts/gtk-themes-reload.sh'
+
+[templates.swaync]
+input_path = "~/.config/matugen/templates/swaync-colors.css"
+output_path = "~/.config/swaync/colors.css"
+post_hook = "swaync-client -rs"

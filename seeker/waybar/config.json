@@ -15,7 +15,7 @@
 
     "modules-left": ["group/workspaces-group"],
     "modules-center": ["clock"],
-    "modules-right": ["group/stats-group", "network", "group/tray-group"],
+    "modules-right": ["group/stats-group", "network", "custom/notification", "group/tray-group"],
 
     // ---------------- Workspaces island ----------------
     "group/workspaces-group": {
@@ -72,6 +72,24 @@
         "on-click": "kitty -e nmtui"
     },
 
+    // ---------------- Notifications (standalone island) ----------------
+	"custom/notification": {
+	    "tooltip": false,
+	    "format": "{icon}",
+	    "format-icons": {
+	        "notification": "󰂚",
+	        "none": "󰂛",
+	        "dnd-notification": "󰂛",
+	        "dnd-none": "󰂛"
+	    },
+	    "return-type": "json",
+	    "exec-if": "which swaync-client",
+	    "exec": "swaync-client -swb",
+	    "on-click": "swaync-client -t -sw",
+	    "on-click-right": "swaync-client -d -sw",
+	    "escape": true
+	},
+	
     // ---------------- Volume / Bluetooth / Power / Tray island ----------------
     "group/tray-group": {
         "orientation": "horizontal",

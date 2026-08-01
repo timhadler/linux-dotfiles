@@ -1,0 +1,14 @@
+{
+  "positionX": "right",       // values: left | right
+  "positionY": "top",         // values: top | bottom
+  "control-center-margin-top": 10,
+  "control-center-margin-bottom": 10,
+  "control-center-width": 400,
+  "notification-window-width": 400,
+  "timeout": 10,               // seconds before auto-dismiss, normal urgency
+  "timeout-low": 5,
+  "timeout-critical": 0,       // 0 = never auto-dismiss
+  "notification-2fa-action": true,
+  "notification-grouping": true,
+  "widgets": ["title", "dnd", "notifications", "mpris", "volume"]
+}

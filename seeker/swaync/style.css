@@ -1,0 +1,312 @@
+/* ==========================================================================
+   swaync style.css — full reference, sleek dark design
+   Path: ~/.config/swaync/style.css
+   Reload: swaync-client -rs   (or just restart swaync)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ Import from matugen generated file
+   -------------------------------------------------------------------------- */
+@import url("colors.css");
+
+/*
+:root {
+  --primary:        #cba6f7;   -- accent (buttons, unread dot, DND switch on) --
+  --on-primary:     #1e1e2e;   -- text/icon color when sitting on --primary --
+  --surface:        #1e1e2ecc; -- main popup/panel background, cc = ~80% opacity --
+  --surface-alt:    #313244;   -- secondary surface (buttons, sliders track) --
+  --on-surface:     #cdd6f4;   -- main text color --
+  --on-surface-dim: #a6adc8;   -- secondary/dimmed text (timestamps, body text) --
+  --border:         #45475a;   -- hairline borders --
+  --critical:       #f38ba8;   -- urgent notification accent --
+  --low:            #6c7086;   -- low urgency accent --
+}
+
+
+/* --------------------------------------------------------------------------
+   GLOBAL
+   -------------------------------------------------------------------------- */
+* {
+  font-family: "JetBrainsMono Nerd Font", sans-serif; /* swap for your chosen Nerd Font */
+  font-size: 13px;
+  transition: 200ms ease; /* smooths hover/state changes; set to 0ms to disable animation entirely */
+}
+
+/* The floating notification popups container (top-right stack) */
+.floating-notifications {
+  background: transparent;
+}
+
+/* Invisible click-catcher behind the control-center panel when open */
+.blank-window {
+  background: rgba(0, 0, 0, 0.15); /* dims the screen behind the panel; 0 = no dimming */
+}
+
+/* --------------------------------------------------------------------------
+   POPUP NOTIFICATIONS (the toast that appears on screen)
+   -------------------------------------------------------------------------- */
+.notification-row {
+  outline: none;
+  margin: 6px 10px; /* spacing between stacked popups and screen edge */
+}
+
+.notification-row:focus,
+.notification-row:hover {
+  background: transparent;
+}
+
+.notification {
+  border-radius: 14px;                 /* corner roundness — 0 for sharp/square */
+  margin: 4px;
+  padding: 0;
+  background: dark-grey;
+  border: 1px solid @background;     /* set to "none" for borderless */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35); /* drop shadow depth; remove line for flat design */
+  min-width: 340px;
+  max-width: 340px;
+}
+
+/* Urgency variants — swaync adds these classes automatically per notification */
+.notification.low {
+  border-left: 3px solid #6c7086;   /* side accent bar; values: solid | dashed | dotted */
+}
+
+.notification.normal {
+  border-left: 3px solid #cba6f7;
+}
+
+.notification.critical {
+  border-left: 6px solid #f38ba8;
+}
+
+.notification-content {
+  padding: 12px;
+  border-radius: 14px;
+}
+
+/* App icon inside the notification (left-hand image) */
+.notification-content .image {
+  border-radius: 8px;      /* 50% for circular avatars, 0 for square */
+  margin-right: 10px;
+}
+
+/* App name / title row */
+.notification-content .summary {
+  color: #cdd6f4;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* Body text of the notification */
+.notification-content .body {
+  color: #a6adc8;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* Timestamp ("5 min ago") */
+.notification-content .time {
+  color: #a6adc8;
+  font-size: 11px;
+  opacity: 0.7; /* 0–1, fades the timestamp further */
+}
+
+/* App name label next to icon, if shown separately from summary */
+.notification-content .app-name {
+  color: #a6adc8;
+  font-size: 11px;
+  text-transform: uppercase; /* values: none | uppercase | lowercase | capitalize */
+  letter-spacing: 0.5px;
+}
+
+/* X button to dismiss a single popup */
+.close-button {
+  background: #313244;
+  color: #cdd6f4;
+  border-radius: 999px;    /* fully round; use e.g. 6px for a rounded-square button */
+  margin: 8px;
+  padding: 2px;
+  opacity: 0.6;             /* idle visibility — raise if it's too hard to see */
+}
+
+.close-button:hover {
+  background: #f38ba8;
+  color: #1e1e2e;
+  opacity: 1;
+}
+
+/* Action buttons row (e.g. "Reply", "Dismiss" on rich notifications) */
+.notification-action {
+  background: #313244;
+  color: #cdd6f4;
+  border-radius: 8px;
+  margin: 4px;
+  padding: 4px 8px;
+  border: none;
+}
+
+.notification-action:hover {
+  background: #cba6f7;
+  color: #1e1e2e;
+}
+
+/* Progress bar notifications (volume/brightness OSD-style, download progress) */
+.notification-progress-bar {
+  background: #313244;
+  border-radius: 999px;
+  min-height: 6px;
+}
+
+.notification-progress-bar progress {
+  background: #cba6f7;
+  border-radius: 999px;
+}
+
+/* --------------------------------------------------------------------------
+   CONTROL CENTER (the full panel opened via swaync-client -t)
+   -------------------------------------------------------------------------- */
+.control-center {
+  background: #1e1e2ecc;
+  border: 1px solid #45475a;
+  border-radius: 16px;
+  margin: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.control-center-list {
+  background: transparent;
+}
+
+/* "Notifications" header text at top of the panel */
+.widget-title {
+  color: #cdd6f4;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px;
+}
+
+/* "Clear all" button inside widget-title */
+.widget-title > button {
+  background: #313244;
+  color: #cdd6f4;
+  border-radius: 8px;
+  padding: 4px 10px;
+}
+
+.widget-title > button:hover {
+  background: #f38ba8;
+  color: #1e1e2e;
+}
+
+/* Do Not Disturb switch row */
+.widget-dnd {
+  background: #313244;
+  border-radius: 12px;
+  margin: 8px;
+  padding: 10px;
+  color: #cdd6f4;
+}
+
+.widget-dnd > switch {
+  border-radius: 999px;
+  background: #45475a;         /* off-state track color */
+}
+
+.widget-dnd > switch:checked {
+  background: #cba6f7;        /* on-state track color */
+}
+
+.widget-dnd > switch slider {
+  border-radius: 999px;
+  background: #cdd6f4;     /* the knob */
+}
+
+/* Media player widget (MPRIS — shows if you added "mpris" to config.json widgets) */
+.widget-mpris {
+  background: #313244;
+  border-radius: 12px;
+  margin: 8px;
+  padding: 10px;
+}
+
+.widget-mpris-title {
+  color: #cdd6f4;
+  font-weight: 600;
+}
+
+.widget-mpris-subtitle {
+  color: #a6adc8;
+}
+
+/* Volume/brightness slider widget */
+.widget-volume,
+.widget-backlight {
+  background: #313244;
+  border-radius: 12px;
+  margin: 8px;
+  padding: 10px;
+}
+
+.widget-volume scale trough,
+.widget-backlight scale trough {
+  background: #45475a;
+  border-radius: 999px;
+  min-height: 6px;
+}
+
+.widget-volume scale trough highlight,
+.widget-backlight scale trough highlight {
+  background: #cba6f7;
+  border-radius: 999px;
+}
+
+/* Quick action buttons grid (if configured) */
+.widget-buttons-grid {
+  background: transparent;
+  padding: 8px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  background: #313244;
+  color: #cdd6f4;
+  border-radius: 10px;
+  margin: 4px;
+  padding: 10px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: #cba6f7;
+  color: #1e1e2e;
+}
+
+/* Menu bar widget (buttons row at very top, e.g. settings shortcuts) */
+.widget-menubar > box > button {
+  color: #cdd6f4;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   SCROLLBAR (control center notification list)
+   -------------------------------------------------------------------------- */
+scrollbar {
+  background: transparent;
+}
+
+scrollbar slider {
+  background: #313244;
+  border-radius: 999px;
+  min-width: 6px;
+}
+
+scrollbar slider:hover {
+  background: #cba6f7;
+}
+
+/* --------------------------------------------------------------------------
+   EMPTY STATE ("No notifications" placeholder in the panel)
+   -------------------------------------------------------------------------- */
+.image-text {
+  color: #a6adc8;
+  font-size: 13px;
+}@import "colors.css";
