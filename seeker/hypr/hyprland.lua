@@ -43,7 +43,7 @@ local programs = {
 ---- MY FILES ----
 ---------------------
 
-local bindings = require("~/.dotfiles/hyprland/alpha/keybindings")
+local bindings = require("~/.dotfiles/seeker/hypr/keybindings")
 
 bindings.setup(programs)
 
