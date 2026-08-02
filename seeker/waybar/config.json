@@ -111,8 +111,9 @@
         "format": " {status}",
         "format-connected": " {device_alias}",
         "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-        "tooltip-format": "Click to open Overskride",
-        "on-click": "blueman-manager"
+        "tooltip-format": "Right click to open Blueman",
+        "on-click": "~/.config/rofi/scripts/rofi-bt.sh",
+        "on-click-right": "blueman-manager"
     },
     "tray": {
         "icon-size": 16,

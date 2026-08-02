@@ -1,0 +1,161 @@
+/* ============================================================
+   bluetooth.rasi - rofi theme for the Bluetooth control menu
+   ------------------------------------------------------------
+   Color source: matugen.
+
+   Once that's set up, replace the fallback "* { ... }" block
+   below with:  @import "colors.rasi"
+   ============================================================ */
+@import "colors.rasi"
+
+configuration {
+    /* show-icons: true if you want per-device icons (needs an
+       icon theme with bluetooth glyphs; nerd-font glyphs in the
+       script already cover this, so leave false to avoid double icons) */
+    show-icons: false;
+    /* disables the "Type to filter" hint text taking over the prompt */
+    hover-select: true;
+}
+
+/* ============================================================
+   WINDOW - the outer popup box
+   ============================================================ */
+
+window {
+    transparency: "none";              /* values: real (true transparency, needs compositor) or none */
+    location: north;                   /* values: center | north | south | east | west | northeast etc - anchor point on screen */
+    anchor: north;                     /* which edge of the window aligns to `location` */
+    x-offset: 0px;
+    y-offset: 48px;                    /* push down below a top Waybar; set to 0 if bar is elsewhere or panel is centered */
+
+    width: 280px;                      /* keep it small per your "couple of buttons" ask; 320-360px if names truncate */
+    border-radius: 16px;               /* values: 0 (sharp) | 8-12 (subtle) | 16-24 (very rounded) */
+    border: 1px solid;
+    border-color: @outline-variant;
+
+    background-color: @surface-container-high;
+    padding: 10px;
+
+    /* rofi doesn't support CSS-style box-shadow blur; this gives a
+       flat drop offset instead. Omit entirely for a flush, shadowless look. */
+    /* box-shadow not supported in rofi rasi - skip */
+}
+
+/* ============================================================
+   MAINBOX - vertical layout container inside the window
+   ============================================================ */
+
+mainbox {
+    background-color: transparent;
+    /* children: [ "inputbar", "listview" ];   order: search bar on top, device list below. Swap or drop "inputbar" from this list to hide search entirely. */
+    children: [ "listview" ];
+    spacing: 8px;
+}
+
+/* ============================================================
+   INPUTBAR - the "Bluetooth" prompt / filter text field
+   ============================================================ */
+
+inputbar {
+    background-color: @surface-container;
+    border-radius: 10px;
+    padding: 8px 10px;
+    children: [ "prompt", "entry" ];
+}
+
+prompt {
+    background-color: transparent;
+    text-color: @secondary;
+    font: "sans-serif 10";     /* replace with your Nerd Font name for icon-consistent rendering, e.g. JetBrainsMono Nerd Font 10 */
+}
+
+entry {
+    background-color: transparent;
+    text-color: @primary;
+    placeholder: "Filter devices...";
+    placeholder-color: @secondary;
+    font: "sans-serif 10";
+}
+
+/* ============================================================
+   LISTVIEW - the scrollable list of menu entries
+   ============================================================ */
+
+listview {
+    background-color: transparent;
+    lines: 6;                  /* max visible rows before scrolling; lower for an even smaller popup */
+    columns: 1;
+    spacing: 4px;
+    fixed-height: false;       /* true pads to always show `lines` rows even with fewer entries; false shrinks to fit */
+    scrollbar: true;
+}
+
+scrollbar {
+    width: 4px;                /* values: 2-4px (hairline) | 6-8px (easier to grab) */
+    border-radius: 999px;
+    handle-color: @outline-variant;
+    handle-width: 4px;
+    background-color: transparent;
+}
+
+/* ============================================================
+   ELEMENT - each row in the list (power toggle + each device)
+   ============================================================ */
+
+element {
+    background-color: transparent;
+    text-color: @primary;
+    border-radius: 10px;       /* values: 0 (flush rows) | 6-10 (soft cards) | 999 (pill rows) */
+    padding: 8px 10px;
+    orientation: horizontal;
+    children: [ "element-text" ]; /* Can add icon for each device here */
+}
+
+element normal.normal {
+    /* default, unselected row */
+    background-color: transparent;
+    text-color: @primary;
+}
+
+element alternate.normal {
+    /* every other row - gives faint zebra striping; set equal to
+       normal.normal's background-color to disable striping */
+    background-color: @surface-container;
+    text-color: @primary;
+}
+
+element selected.normal {
+    /* row currently highlighted via keyboard/mouse hover */
+    background-color: @primary;
+    text-color: @on-primary;
+}
+
+element-icon {
+    size: 16px;                 /* only matters if show-icons: true above */
+    horizontal-align: 0.5;
+}
+
+element-text {
+    background-color: transparent;
+    font: "sans-serif 10";      /* match to your Nerd Font for icon glyphs embedded in the script's output text, e.g. JetBrainsMono Nerd Font 10 */
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+    text-color: inherit;        /* inherits from the element normal/selected state above */
+}
+
+/* ============================================================
+   MESSAGE / ERROR BAR - rofi shows this on invalid input;
+   unlikely to trigger in this dmenu-only setup, styled for
+   consistency in case bluetoothctl errors surface here
+   ============================================================ */
+
+message {
+    background-color: @surface-container;
+    border-radius: 8px;
+    padding: 6px 8px;
+}
+
+textbox {
+    text-color: @error;
+    font: "sans-serif 9";
+}
